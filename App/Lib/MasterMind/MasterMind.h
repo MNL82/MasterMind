@@ -16,11 +16,12 @@ public:
 	};
 
 	MasterMind();
+	MasterMind(Configuration config);
 	~MasterMind();
 
 
-
 	State state() const;
+	const Configuration &config() const;
 
 private:
 	State m_state = State::Initial;

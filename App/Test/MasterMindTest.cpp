@@ -44,3 +44,12 @@ TEST_CASE("Copy/Compare Configuration") {
 	REQUIRE(c3.triesCount() == 100);
 	REQUIRE((c1 == c3));
 }
+
+TEST_CASE("MasterMind configuration initialization") {
+	Configuration c;
+	c.setColorCount(10);
+	c.setColumnCount(6);
+	MasterMind mm(c);
+	REQUIRE(mm.config().colorCount() == 10);
+	REQUIRE(mm.config().columnCount() == 6);
+}
