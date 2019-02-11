@@ -12,4 +12,9 @@ MasterMind::~MasterMind()
 {
 }
 
+MasterMind::State MasterMind::state() const
+{
+	return m_state;
+}
+
 } // namespace MM

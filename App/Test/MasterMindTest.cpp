@@ -14,3 +14,8 @@ TEST_CASE("Instantiate MasterMind")
 	delete mm;
 	mm = nullptr;
 }
+
+TEST_CASE("Initial State") {
+	MasterMind mm;
+	REQUIRE(mm.state() == MasterMind::State::Initial);
+}

@@ -164,9 +164,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="MasterMind.h" />
+    <ClInclude Include="Configuration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MasterMind.cpp" />
+    <ClCompile Include="Configuration.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
