@@ -3,6 +3,8 @@
 
 #include "MasterMind.h"
 
+using namespace MM;
+
 TEST_CASE("Instantiate MasterMind")
 {
 	MasterMind * mm = new MasterMind();

@@ -1,5 +1,8 @@
 #pragma once
 
+namespace MM {
+
+
 class MasterMind
 {
 public:
@@ -7,3 +10,5 @@ public:
 	~MasterMind();
 };
 
+
+} // namespace MM

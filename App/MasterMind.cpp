@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace MM;
+
 int main()
 {
     std::cout << "Hello World!\n"; 
