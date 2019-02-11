@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Configuration.h"
+
 namespace MM {
 
 
@@ -22,6 +24,7 @@ public:
 
 private:
 	State m_state = State::Initial;
+	Configuration m_config;
 };
 
 

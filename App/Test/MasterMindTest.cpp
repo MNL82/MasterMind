@@ -28,3 +28,19 @@ TEST_CASE("Initial Configuration") {
 	REQUIRE(mmc.columnCount() == 4);
 	REQUIRE(!mmc.playerName().empty());
 }
+
+TEST_CASE("Copy/Compare Configuration") {
+	Configuration c1, c2;
+	REQUIRE((c1 == c2));
+	REQUIRE_FALSE((c1 != c2));
+
+	c2.setColorCount(8);
+	c1.setPlayerName("Mikkel");
+	c1.setTriesCount(100);
+	REQUIRE((c1 != c2));
+	REQUIRE_FALSE((c1 == c2));
+
+	Configuration c3 = c1;
+	REQUIRE(c3.triesCount() == 100);
+	REQUIRE((c1 == c3));
+}

@@ -7,9 +7,35 @@ Configuration::Configuration()
 {
 }
 
+Configuration::Configuration(const Configuration & copy)
+{
+	*this = copy;
+}
+
 
 Configuration::~Configuration()
 {
+}
+
+void Configuration::operator=(const Configuration & other)
+{
+	m_colorCount = other.m_colorCount;
+	m_triesCount = other.m_triesCount;
+	m_columnCount = other.m_columnCount;
+	m_playerName = other.m_playerName;
+}
+
+bool Configuration::operator==(const Configuration & other)
+{
+	return m_colorCount == other.m_colorCount &&
+		   m_triesCount == other.m_triesCount &&
+		   m_columnCount == other.m_columnCount &&
+	       m_playerName == other.m_playerName;
+}
+
+bool Configuration::operator!=(const Configuration & other)
+{
+	return !(*this == other);
 }
 
 int Configuration::colorCount() const

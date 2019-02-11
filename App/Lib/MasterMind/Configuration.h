@@ -8,7 +8,13 @@ class Configuration
 {
 public:
 	Configuration();
+	Configuration(const Configuration &copy);
+
 	~Configuration();
+
+	void operator=(const Configuration &other);
+	bool operator==(const Configuration &other);
+	bool operator!=(const Configuration &other);
 
 	int colorCount() const;
 	bool setColorCount(int count);
