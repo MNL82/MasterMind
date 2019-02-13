@@ -16,10 +16,12 @@ public:
 
 	bool isValid() const;
 
+	int combinationCount() const;
+
 	// Indexed colors are used
 	// Color value of 0 is undefined
 	int color(int index) const;
-	void setColor(int index, int color);
+	bool setColor(int index, int color);
 
 	void resetColors();
 

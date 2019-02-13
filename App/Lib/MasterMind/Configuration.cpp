@@ -43,7 +43,7 @@ int Configuration::colorCount() const
 
 bool Configuration::setColorCount(int count)
 {
-	if (count < 2 || count > 10) { return false; }
+	if (count < 2 || count > MAX_COUNT_COLORS) { return false; }
 	m_colorCount = count;
 	return true;
 }
@@ -67,7 +67,7 @@ int Configuration::columnCount() const
 
 bool Configuration::setColumnCount(int count)
 {
-	if (count < 2 || count > 10) { return false; }
+	if (count < 2 || count > MAX_COUNT_COLUMNS) { return false; }
 	m_columnCount = count;
 	return true;
 }

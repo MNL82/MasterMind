@@ -2,6 +2,9 @@
 
 namespace MM {
 
+#define MAX_COUNT_COLORS 10
+#define MAX_COUNT_COLUMNS 10
+
 class Configuration
 {
 public:

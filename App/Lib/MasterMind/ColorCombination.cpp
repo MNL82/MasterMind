@@ -21,11 +21,11 @@ ColorCombination::~ColorCombination()
 
 }
 
-void ColorCombination::update(int combinationCount)
+void ColorCombination::update(int _combinationCount)
 {
-	ASSERT(combinationCount > 0);
-	if (static_cast<int>(m_colors.size()) != combinationCount) {
-		m_colors.resize(combinationCount);
+	ASSERT(_combinationCount > 0);
+	if (_combinationCount != combinationCount()) {
+		m_colors.resize(_combinationCount);
 	}
 }
 
@@ -39,17 +39,23 @@ bool ColorCombination::isValid() const
 	return true;
 }
 
+int ColorCombination::combinationCount() const
+{
+	return static_cast<int>(m_colors.size());
+}
+
 int ColorCombination::color(int index) const
 {
-	ASSERT(index >= 0 && index < static_cast<int>(m_colors.size()));
+	ASSERT(index >= 0 && index < combinationCount());
 	return m_colors[index];
 }
 
-void ColorCombination::setColor(int index, int color)
+bool ColorCombination::setColor(int index, int color)
 {
-	ASSERT(index >= 0 && index < static_cast<int>(m_colors.size()));
-	ASSERT(color >= 0);
+	ASSERT(index >= 0 && index < combinationCount());
+	if (color < 0 && color > MAX_COUNT_COLORS) { return false; }
 	m_colors[index] = color;
+	return true;
 }
 
 void ColorCombination::resetColors()
