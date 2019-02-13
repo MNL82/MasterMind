@@ -163,10 +163,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ColorCombination.h" />
     <ClInclude Include="MasterMind.h" />
     <ClInclude Include="Configuration.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColorCombination.cpp" />
     <ClCompile Include="MasterMind.cpp" />
     <ClCompile Include="Configuration.cpp" />
   </ItemGroup>

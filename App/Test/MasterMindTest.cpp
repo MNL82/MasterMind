@@ -3,6 +3,7 @@
 
 #include "MasterMind.h"
 #include "Configuration.h"
+#include "ColorCombination.h"
 
 using namespace MM;
 
@@ -50,4 +51,25 @@ TEST_CASE("MasterMind configuration initialization") {
 	MasterMind mm(c);
 	REQUIRE(mm.config().colorCount() == 10);
 	REQUIRE(mm.config().columnCount() == 6);
+}
+
+TEST_CASE("Color Combinations") {
+	ColorCombination cc(4);
+	REQUIRE(!cc.isValid());
+
+	cc.setColor(0, 4);
+	cc.setColor(1, 4);
+	cc.setColor(2, 4);
+	cc.setColor(3, 4);
+	REQUIRE(cc.color(2) == 4);
+	REQUIRE(cc.isValid());
+
+	cc.update(6);
+	REQUIRE(!cc.isValid());
+	REQUIRE(cc.color(5) == 0);
+
+	cc.setColor(4, 2);
+	cc.setColor(5, 1);
+	REQUIRE(cc.isValid());
+
 }
