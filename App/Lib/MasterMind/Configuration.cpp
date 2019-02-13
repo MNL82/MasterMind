@@ -22,15 +22,13 @@ void Configuration::operator=(const Configuration & other)
 	m_colorCount = other.m_colorCount;
 	m_triesCount = other.m_triesCount;
 	m_columnCount = other.m_columnCount;
-	m_playerName = other.m_playerName;
 }
 
 bool Configuration::operator==(const Configuration & other)
 {
 	return m_colorCount == other.m_colorCount &&
 		   m_triesCount == other.m_triesCount &&
-		   m_columnCount == other.m_columnCount &&
-	       m_playerName == other.m_playerName;
+		   m_columnCount == other.m_columnCount;
 }
 
 bool Configuration::operator!=(const Configuration & other)
@@ -72,17 +70,6 @@ bool Configuration::setColumnCount(int count)
 	if (count < 2 || count > 10) { return false; }
 	m_columnCount = count;
 	return true;
-}
-
-const std::string & Configuration::playerName() const
-{
-	return m_playerName;
-}
-
-bool Configuration::setPlayerName(const std::string & name)
-{
-	m_playerName = name;
-	return false;
 }
 
 } // namespace MM

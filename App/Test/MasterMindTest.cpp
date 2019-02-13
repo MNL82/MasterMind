@@ -26,7 +26,6 @@ TEST_CASE("Initial Configuration") {
 	REQUIRE(mmc.colorCount() == 6);
 	REQUIRE(mmc.triesCount() == 10);
 	REQUIRE(mmc.columnCount() == 4);
-	REQUIRE(!mmc.playerName().empty());
 }
 
 TEST_CASE("Copy/Compare Configuration") {
@@ -35,7 +34,6 @@ TEST_CASE("Copy/Compare Configuration") {
 	REQUIRE_FALSE((c1 != c2));
 
 	c2.setColorCount(8);
-	c1.setPlayerName("Mikkel");
 	c1.setTriesCount(100);
 	REQUIRE((c1 != c2));
 	REQUIRE_FALSE((c1 == c2));
