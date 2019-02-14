@@ -14,8 +14,8 @@ public:
 	~Configuration();
 
 	void operator=(const Configuration &other);
-	bool operator==(const Configuration &other);
-	bool operator!=(const Configuration &other);
+	bool operator==(const Configuration &other) const;
+	bool operator!=(const Configuration &other) const;
 
 	int colorCount() const;
 	bool setColorCount(int count);

@@ -24,14 +24,14 @@ void Configuration::operator=(const Configuration & other)
 	m_columnCount = other.m_columnCount;
 }
 
-bool Configuration::operator==(const Configuration & other)
+bool Configuration::operator==(const Configuration & other) const
 {
 	return m_colorCount == other.m_colorCount &&
 		   m_triesCount == other.m_triesCount &&
 		   m_columnCount == other.m_columnCount;
 }
 
-bool Configuration::operator!=(const Configuration & other)
+bool Configuration::operator!=(const Configuration & other) const
 {
 	return !(*this == other);
 }
