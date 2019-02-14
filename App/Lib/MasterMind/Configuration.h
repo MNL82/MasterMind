@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 namespace MM {
 
 #define MAX_COUNT_COLORS 10
@@ -26,11 +28,17 @@ public:
 	int columnCount() const;
 	bool setColumnCount(int count);
 
+	static const std::string &colorFromInt(int color);
+	static int colorToInt(const std::string &);
+
 private:
 	// Initialized with default values
 	int m_colorCount = 6;
 	int m_triesCount = 10;
 	int m_columnCount = 4;
+
+	// Index of the hex value if the integer value of the color
+	static std::vector<std::string> s_colorList;
 };
 
 } // namespace MM
