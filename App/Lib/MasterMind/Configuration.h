@@ -4,8 +4,17 @@
 
 namespace MM {
 
-#define MAX_COUNT_COLORS 10
-#define MAX_COUNT_COLUMNS 10
+#define MM_COLOR_MIN_COUNT 2
+#define MM_COLOR_DEFAULT   6
+#define MM_COLOR_MAX_COUNT 10
+
+#define MM_COLUMNS_MIN_COUNT 2
+#define MM_COLUMNS_DEFAULT   4
+#define MM_COLUMNS_MAX_COUNT 10
+
+#define MM_TRIES_MIN_COUNT 4
+#define MM_TRIES_DEFAULT   12
+#define MM_TRIES_MAX_COUNT 100
 
 class Configuration
 {
@@ -29,16 +38,17 @@ public:
 	bool setColumnCount(int count);
 
 	static const std::string &colorFromInt(int color);
+	static const std::string &colorNameFromInt(int color);
 	static int colorToInt(const std::string &);
 
 private:
 	// Initialized with default values
-	int m_colorCount = 6;
-	int m_triesCount = 10;
-	int m_columnCount = 4;
+	int m_colorCount = MM_COLOR_DEFAULT;
+	int m_triesCount = MM_TRIES_DEFAULT;
+	int m_columnCount = MM_COLUMNS_DEFAULT;
 
 	// Index of the hex value if the integer value of the color
-	static std::vector<std::string> s_colorList;
+	static std::vector<std::pair<std::string, std::string>> s_colorList;
 };
 
 } // namespace MM

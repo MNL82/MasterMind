@@ -5,11 +5,11 @@
 namespace MM {
 
 struct Result {
-	int rightLocation = -1;
+	int rightPosition = -1;
 	int rightColor = -1;
 
 	bool isValid() const { 
-		return rightLocation != -1 && 
+		return rightPosition != -1 && 
 			   rightColor != -1;  
 	}
 };
@@ -25,6 +25,7 @@ public:
 
 	// Color combinations can not be changed after result have been calculated
 	bool setColor(int index, int color);
+	bool setColors(const ColorCombination &colors);
 	bool resetColors();
 
 	const Result &result() const;

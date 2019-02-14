@@ -125,6 +125,12 @@ bool MasterMind::setGuessColor(int index, int color)
 	return m_guesses[m_currentGuessIndex]->setColor(index, color);
 }
 
+bool MasterMind::setGuessColors(const ColorCombination &colors)
+{
+	if (!acceptInput()) { return false; }
+	return m_guesses[m_currentGuessIndex]->setColors(colors);
+}
+
 bool MasterMind::calculateGuessResult()
 {
 	ASSERT(m_currentGuessIndex >= 0);
@@ -141,6 +147,12 @@ bool MasterMind::calculateGuessResult()
 		return true;
 	}
 	return false;
+}
+
+int MasterMind::points() const
+{
+	if (!finished()) { return -1; }
+	return m_currentGuessIndex + (m_state == State::Failed ? 2 : 1);
 }
 
 void MasterMind::addCodeGuess()

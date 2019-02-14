@@ -15,10 +15,29 @@ ColorCombination::ColorCombination(int combinationCount)
 	update(combinationCount);
 }
 
+ColorCombination::ColorCombination(const ColorCombination & copy)
+	: m_colors(copy.m_colors)
+{
+}
 
 ColorCombination::~ColorCombination()
 {
 
+}
+
+void ColorCombination::operator=(const ColorCombination & other)
+{
+	m_colors.assign(other.m_colors.begin(), other.m_colors.end());
+}
+
+bool ColorCombination::operator==(const ColorCombination & other) const
+{
+	return m_colors == other.m_colors;
+}
+
+bool ColorCombination::operator!=(const ColorCombination & other) const
+{
+	return m_colors != other.m_colors;
 }
 
 void ColorCombination::update(int _combinationCount, int colorCount)
@@ -63,7 +82,7 @@ int ColorCombination::color(int index) const
 bool ColorCombination::setColor(int index, int color)
 {
 	ASSERT(index >= 0 && index < combinationCount());
-	if (color < 0 && color > MAX_COUNT_COLORS) { return false; }
+	if (color < 0 && color > MM_COLOR_MAX_COUNT) { return false; }
 	m_colors[index] = color;
 	return true;
 }

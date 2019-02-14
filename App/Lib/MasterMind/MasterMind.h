@@ -44,8 +44,10 @@ public:
 
 	const CodeGuess &currentGuess() const;
 	bool setGuessColor(int index, int color);
+	bool setGuessColors(const ColorCombination &colors);
 	bool calculateGuessResult();
 
+	int points() const;
 
 private:
 	void addCodeGuess();

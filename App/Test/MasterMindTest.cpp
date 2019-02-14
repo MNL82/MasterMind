@@ -24,9 +24,9 @@ TEST_CASE("Initial State") {
 
 TEST_CASE("Initial Configuration") {
 	Configuration mmc;
-	REQUIRE(mmc.colorCount() == 6);
-	REQUIRE(mmc.triesCount() == 10);
-	REQUIRE(mmc.columnCount() == 4);
+	REQUIRE(mmc.colorCount() == MM_COLOR_DEFAULT);
+	REQUIRE(mmc.triesCount() == MM_TRIES_DEFAULT);
+	REQUIRE(mmc.columnCount() == MM_COLUMNS_DEFAULT);
 }
 
 TEST_CASE("Copy/Compare Configuration") {
@@ -91,7 +91,7 @@ TEST_CASE("Guess Color Combinations")
 	guess.setColor(3, 2);
 
 	REQUIRE(guess.calculateResult());
-	REQUIRE(guess.result().rightLocation == 1);
+	REQUIRE(guess.result().rightPosition == 1);
 	REQUIRE(guess.result().rightColor == 1);
 	REQUIRE_FALSE(guess.isCorrect());
 
@@ -103,7 +103,7 @@ TEST_CASE("Guess Color Combinations")
 	guess2.setColor(2, 3);
 	guess2.setColor(3, 4);
 	REQUIRE(guess2.calculateResult());
-	REQUIRE(guess2.result().rightLocation == 4);
+	REQUIRE(guess2.result().rightPosition == 4);
 	REQUIRE(guess2.result().rightColor == 0);
 	REQUIRE(guess2.isCorrect());
 }
@@ -159,7 +159,7 @@ TEST_CASE("") {
 	mm.setGuessColor(3, 7);
 	REQUIRE(mm.calculateGuessResult());
 	REQUIRE(mm.currentGuessIndex() == 1);
-	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 0);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightPosition == 0);
 	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
 	REQUIRE(mm.state() == MasterMind::State::InProgress);
 
@@ -170,7 +170,7 @@ TEST_CASE("") {
 	mm.setGuessColor(3, 6);
 	REQUIRE(mm.calculateGuessResult());
 	REQUIRE(mm.currentGuessIndex() == 2);
-	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightPosition == 1);
 	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
 	REQUIRE(mm.state() == MasterMind::State::InProgress);
 
@@ -181,7 +181,7 @@ TEST_CASE("") {
 	mm.setGuessColor(3, 6);
 	REQUIRE(mm.calculateGuessResult());
 	REQUIRE(mm.currentGuessIndex() == 3);
-	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightPosition == 1);
 	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
 	REQUIRE(mm.state() == MasterMind::State::InProgress);
 
@@ -192,7 +192,7 @@ TEST_CASE("") {
 	mm.setGuessColor(3, 6);
 	REQUIRE(mm.calculateGuessResult());
 	REQUIRE(mm.currentGuessIndex() == 4);
-	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 0);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightPosition == 0);
 	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
 	REQUIRE(mm.state() == MasterMind::State::InProgress);
 
@@ -203,7 +203,7 @@ TEST_CASE("") {
 	mm.setGuessColor(3, 8);
 	REQUIRE(mm.calculateGuessResult());
 	REQUIRE(mm.currentGuessIndex() == 5);
-	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightPosition == 1);
 	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 3);
 	REQUIRE(mm.state() == MasterMind::State::InProgress);
 
@@ -214,7 +214,7 @@ TEST_CASE("") {
 	mm.setGuessColor(3, 8);
 	REQUIRE(mm.calculateGuessResult());
 	REQUIRE(mm.currentGuessIndex() == 5);
-	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightPosition == 1);
 	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 3);
 	REQUIRE(mm.state() == MasterMind::State::Success);
 	REQUIRE(mm.currentGuess().isCorrect());

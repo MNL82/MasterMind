@@ -10,17 +10,17 @@
 
 namespace MM {
 
-std::vector<std::string> Configuration::s_colorList = { "#00000000", // 0  - Transparent
-														"#ffffff",   // 1  - White 
-                                                        "#000000",   // 2  - Black 
-														"#ff0000",   // 3  - Read 
-														"#00ff00",   // 4  - Green 
-														"#0000ff",   // 5  - Blue 
-														"#ffff00",   // 6  - Yellow 
-														"#00ffff",   // 7  - Turquoise 
-														"#ff00ff",   // 8  - Purple 
-														"#ff8800",   // 9  - Orange 
-														"#888888"};  // 10 - Grey
+std::vector<std::pair<std::string, std::string>> Configuration::s_colorList = { {"Transparent", "#00000000" }, // 0  - Transparent
+														                        {"White", "#ffffff" },     // 1  - White 
+																				{"Black", "#000000" },     // 2  - Black 
+																				{"Read", "#ff0000" },      // 3  - Read 
+																				{"Green", "#00ff00" },     // 4  - Green 
+																				{"Blue", "#0000ff" },      // 5  - Blue 
+																				{"Yellow", "#ffff00" },    // 6  - Yellow 
+																				{"Turquoise", "#00ffff" }, // 7  - Turquoise 
+																				{"Purple", "#ff00ff" },    // 8  - Purple 
+																				{"Orange", "#ff8800" },    // 9  - Orange 
+																				{"Grey", "#888888" } };    // 10 - Grey
 
 Configuration::Configuration()
 {
@@ -62,7 +62,7 @@ int Configuration::colorCount() const
 
 bool Configuration::setColorCount(int count)
 {
-	if (count < 2 || count > MAX_COUNT_COLORS) { return false; }
+	if (count < MM_COLOR_MIN_COUNT || count > MM_COLOR_MAX_COUNT) { return false; }
 	if (count != m_colorCount) {
 		m_colorCount = count;
 	}
@@ -76,7 +76,7 @@ int Configuration::triesCount() const
 
 bool Configuration::setTriesCount(int count)
 {
-	if (count < 1) { return false; }
+	if (count < MM_TRIES_MIN_COUNT) { return false; }
 	if (count != m_triesCount) {
 		m_triesCount = count;
 	}
@@ -90,7 +90,7 @@ int Configuration::columnCount() const
 
 bool Configuration::setColumnCount(int count)
 {
-	if (count < 2 || count > MAX_COUNT_COLUMNS) { return false; }
+	if (count < MM_COLUMNS_MIN_COUNT || count > MM_COLUMNS_MAX_COUNT) { return false; }
 	if (count != m_columnCount) {
 		m_columnCount = count;
 	}
@@ -99,15 +99,21 @@ bool Configuration::setColumnCount(int count)
 
 const std::string & Configuration::colorFromInt(int color)
 {
-	ASSERT(color > 0 || color <= MAX_COUNT_COLORS);
-	return s_colorList[color];
+	ASSERT(color > 0 || color <= MM_COLOR_MAX_COUNT);
+	return s_colorList[color].second;
+}
+
+const std::string & Configuration::colorNameFromInt(int color)
+{
+	ASSERT(color > 0 || color <= MM_COLOR_MAX_COUNT);
+	return s_colorList[color].first;
 }
 
 int Configuration::colorToInt(const std::string & color)
 {
-	for (int i = 1; i <= MAX_COUNT_COLORS; i++)
+	for (int i = 1; i <= MM_COLOR_MAX_COUNT; i++)
 	{
-		if (color == s_colorList[i]) {
+		if (color == s_colorList[i].first || color == s_colorList[i].second) {
 			return i;
 		}
 	}

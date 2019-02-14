@@ -10,7 +10,12 @@ class ColorCombination
 {
 public:
 	ColorCombination(int combinationCount);
+	ColorCombination(const ColorCombination &copy);
 	~ColorCombination();
+
+	void operator=(const ColorCombination &other);
+	bool operator==(const ColorCombination &other) const;
+	bool operator!=(const ColorCombination &other) const;
 
 	void update(int combinationCount, int colorCount = -1);
 
