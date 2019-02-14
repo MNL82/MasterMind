@@ -24,9 +24,6 @@
     <ClInclude Include="ColorCombination.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CodeGuess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,9 +36,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ColorCombination.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CodeGuess.cpp">
