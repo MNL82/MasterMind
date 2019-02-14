@@ -19,7 +19,7 @@ TEST_CASE("Instantiate MasterMind")
 
 TEST_CASE("Initial State") {
 	MasterMind mm;
-	REQUIRE(mm.state() == MasterMind::State::Initial);
+	REQUIRE(mm.state() == MasterMind::State::Invalid);
 }
 
 TEST_CASE("Initial Configuration") {
@@ -107,3 +107,126 @@ TEST_CASE("Guess Color Combinations")
 	REQUIRE(guess2.result().rightColor == 0);
 	REQUIRE(guess2.isCorrect());
 }
+
+TEST_CASE("") {
+	Configuration c;
+	c.setColorCount(8);
+	c.setColumnCount(5);
+	c.setTriesCount(12);
+
+	MasterMind mm(c);
+
+	REQUIRE(mm.config().columnCount() == 5);
+	mm.randomCodeColors();
+
+	//std::cout << "Color Count: " << mm.config().colorCount() << std::endl;
+	//for (int n = 0; n < 10; n++) {
+	//	mm.randomCodeColors();	
+	//	REQUIRE(mm.state() == MasterMind::State::Initial);
+	//	for (int i = 0; i < mm.config().columnCount(); i++)
+	//	{
+	//		std::cout << mm.codeColorCombination().color(i) << " ";
+	//	}
+	//	std::cout << std::endl;
+	//}
+	
+	REQUIRE(mm.currentGuessIndex() == 0);
+	REQUIRE_FALSE(mm.calculateGuessResult());
+
+	for (int i = 0; i < mm.config().columnCount(); i++)
+	{
+		mm.setGuessColor(i, i + 1);
+	}
+	REQUIRE(mm.calculateGuessResult());
+	REQUIRE(mm.state() == MasterMind::State::InProgress);
+	REQUIRE(mm.currentGuessIndex() == 1);
+//
+	// Reset MasterMind
+	c.setColorCount(10);
+	c.setColumnCount(4);
+	mm.setConfig(c);
+
+	// Set the code
+	mm.setCodeColor(0, 4);
+	mm.setCodeColor(1, 7);
+	mm.setCodeColor(2, 3);
+	mm.setCodeColor(3, 8);
+
+	// 1. guess
+	mm.setGuessColor(0, 6);
+	mm.setGuessColor(1, 6);
+	mm.setGuessColor(2, 7);
+	mm.setGuessColor(3, 7);
+	REQUIRE(mm.calculateGuessResult());
+	REQUIRE(mm.currentGuessIndex() == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 0);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
+	REQUIRE(mm.state() == MasterMind::State::InProgress);
+
+	// 2. guess
+	mm.setGuessColor(0, 8);
+	mm.setGuessColor(1, 3);
+	mm.setGuessColor(2, 3);
+	mm.setGuessColor(3, 6);
+	REQUIRE(mm.calculateGuessResult());
+	REQUIRE(mm.currentGuessIndex() == 2);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
+	REQUIRE(mm.state() == MasterMind::State::InProgress);
+
+	// 3. guess
+	mm.setGuessColor(0, 4);
+	mm.setGuessColor(1, 8);
+	mm.setGuessColor(2, 4);
+	mm.setGuessColor(3, 6);
+	REQUIRE(mm.calculateGuessResult());
+	REQUIRE(mm.currentGuessIndex() == 3);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
+	REQUIRE(mm.state() == MasterMind::State::InProgress);
+
+	// 4. guess
+	mm.setGuessColor(0, 1);
+	mm.setGuessColor(1, 1);
+	mm.setGuessColor(2, 8);
+	mm.setGuessColor(3, 6);
+	REQUIRE(mm.calculateGuessResult());
+	REQUIRE(mm.currentGuessIndex() == 4);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 0);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 1);
+	REQUIRE(mm.state() == MasterMind::State::InProgress);
+
+	// 5. guess
+	mm.setGuessColor(0, 7);
+	mm.setGuessColor(1, 3);
+	mm.setGuessColor(2, 4);
+	mm.setGuessColor(3, 8);
+	REQUIRE(mm.calculateGuessResult());
+	REQUIRE(mm.currentGuessIndex() == 5);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 3);
+	REQUIRE(mm.state() == MasterMind::State::InProgress);
+
+	// 6. guess
+	mm.setGuessColor(0, 4);
+	mm.setGuessColor(1, 7);
+	mm.setGuessColor(2, 3);
+	mm.setGuessColor(3, 8);
+	REQUIRE(mm.calculateGuessResult());
+	REQUIRE(mm.currentGuessIndex() == 5);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightLocation == 1);
+	REQUIRE(mm.guess(mm.currentGuessIndex() - 1).result().rightColor == 3);
+	REQUIRE(mm.state() == MasterMind::State::Success);
+	REQUIRE(mm.currentGuess().isCorrect());
+}
+
+//"#ffffff",   // 1  - White 
+//"#000000",   // 2  - Black 
+//"#ff0000",   // 3  - Red 
+//"#00ff00",   // 4  - Green 
+//"#0000ff",   // 5  - Blue 
+//"#ffff00",   // 6  - Yellow 
+//"#00ffff",   // 7  - Turquoise 
+//"#ff00ff",   // 8  - Purple 
+//"#ff8800",   // 9  - Orange 
+//"#888888"};  // 10 - Grey
