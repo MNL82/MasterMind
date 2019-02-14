@@ -13,7 +13,7 @@ CodeGuess::~CodeGuess()
 {
 }
 
-const ColorCombination & CodeGuess::colorCombination()
+const ColorCombination & CodeGuess::colorCombination() const
 {
 	return m_colorCombination;
 }

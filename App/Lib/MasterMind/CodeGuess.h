@@ -21,7 +21,7 @@ public:
 	CodeGuess(const ColorCombination *code);
 	~CodeGuess();
 
-	const ColorCombination &colorCombination();
+	const ColorCombination &colorCombination() const;
 
 	// Color combinations can not be changed after result have been calculated
 	bool setColor(int index, int color);
