@@ -12,7 +12,7 @@ public:
 	ColorCombination(int combinationCount);
 	~ColorCombination();
 
-	void update(int combinationCount);
+	void update(int combinationCount, int colorCount = -1);
 
 	bool isValid() const;
 

@@ -21,11 +21,21 @@ ColorCombination::~ColorCombination()
 
 }
 
-void ColorCombination::update(int _combinationCount)
+void ColorCombination::update(int _combinationCount, int colorCount)
 {
 	ASSERT(_combinationCount > 0);
 	if (_combinationCount != combinationCount()) {
 		m_colors.resize(_combinationCount);
+	}
+
+	// Make sure no colors are outside the boundary
+	if (colorCount > 0) {
+		for (int &c : m_colors)
+		{
+			if (c > colorCount) {
+				c = 0;
+			}
+		}
 	}
 }
 
